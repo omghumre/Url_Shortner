@@ -39,7 +39,7 @@ This repository contains the code for a URL Shortener web application implemente
 1. Clone the repository to your local machine:
 
    ```
-   git clone [https://github.com/your_username/your_project.git](https://github.com/omg12347/Url_Shortner)
+   git clone https://github.com/omg12347/Url_Shortner
    ```
 
 2. Install the required dependencies. It's recommended to use a virtual environment:
@@ -63,25 +63,6 @@ This repository contains the code for a URL Shortener web application implemente
 
 6. Click the "Copy URL" button to copy the shortened URL to your clipboard.
 
-## Project Structure
-
-```
-|-- url_shortener/
-|   |-- templates/
-|   |   |-- base.html
-|   |   |-- index.html
-|   |-- static/
-|   |   |-- css/
-|   |   |   |-- tailwind.min.css
-|   |   |-- js/
-|   |   |   |-- jquery-3.1.1.min.js
-|   |   |   |-- script.js
-|   |-- urls.py
-|   |-- views.py
-|-- manage.py
-|-- requirements.txt
-|-- README.md
-```
 
 - `url_shortener`: This directory contains the Django application files.
   - `templates`: Contains the HTML templates for rendering the frontend.
