@@ -4,9 +4,9 @@ This repository contains the code for a URL Shortener web application implemente
 
 ## Demo Video
 
-[![URL Shortener Demo Video](https://example.com/demo-thumbnail.png)](https://example.com/demo-video-link)
 
-[Watch the Demo Video](https://example.com/demo-video-link)
+https://github.com/omg12347/Url_Shortner/assets/97293861/a2b45292-9dda-4fa1-b055-e23e38145aff
+
 
 ## How It Works
 
