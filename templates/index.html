@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto mt-10 p-4">
+    <header class="text-center mb-5">
+      <h1 class="text-3xl font-bold">URL Shortener</h1>
+      <p>Enter a URL to shorten:</p>
+    </header>
+    <form id="post-form">
+      {% csrf_token %}
+    <main>
+      <div class="flex mb-3">
+        <input type="text" name="link" id="link" class="flex-1 p-2 border rounded-l" placeholder="Enter URL here">
+        <!-- <input type="text" id="long-url" class="flex-1 p-2 border rounded-l" placeholder="Enter your long URL here"> -->
+        <div class="buttons">
+          <button type="submit" id="shorten" class="px-4 py-2 bg-blue-500 text-white rounded-r hover:bg-blue-600 transition">Shorten</button>
+           </div>
+        <!-- <button id="shorten-btn" class="px-4 py-2 bg-blue-500 text-white rounded-r hover:bg-blue-600 transition">Shorten</button> -->
+      </div>
+      <div class="shortened-url p-4 bg-white rounded mb-4">
+        <h3 class="text-xl font-bold mb-2">Shortened URL:</h3>
+        
+        <section id="section" class="p-2 rounded bg-gray-200"><h2></h2></section>
+        <button id="copy-url" class="px-4 py-2 bg-green-500 text-white rounded ml-2 hover:bg-green-600 transition my-2">Copy URL</button>
+       
+      </div>
+    </main>
+  </form>
+    <footer class="text-center mt-5">
+      <p>&copy; 2023 URL Shortener</p>
+    </footer>
+  </div>
+  <script type="text/javascript">
+    $(document).on('submit','#post-form',function(e){
+      e.preventDefault();
+  
+      $.ajax({
+        type:'POST',
+        url:'/create',
+        data:{
+          link:$('#link').val(),
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: function(data){
+          $('h2').html("localhost:8000/"+data)
+        }
+      });
+    });
+
+    // Existing AJAX code
+// ...
+
+// Add the click event listener to the "Copy URL" button
+document.getElementById("copy-url").addEventListener("click", function () {
+    // Get the shortened URL text from the section element
+    var shortenedURL = document.querySelector("#section h2").textContent;
+  
+    // Create a temporary input element to copy the text
+    var tempInput = document.createElement("input");
+    tempInput.type = "text";
+    tempInput.value = shortenedURL;
+  
+    // Append the temporary input element to the document
+    document.body.appendChild(tempInput);
+  
+    // Select the text in the temporary input element
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // For mobile devices
+  
+    // Copy the selected text to the clipboard
+    document.execCommand("copy");
+  
+    // Remove the temporary input element
+    document.body.removeChild(tempInput);
+  
+    // Optional: Provide some feedback to the user
+    alert("Shortened URL copied to clipboard: " + shortenedURL);
+  });
+  
+  </script>
+</body>
+</html>
